@@ -1,5 +1,11 @@
 import React, { useCallback, useRef } from 'react';
-import { View, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
+import {
+  View,
+  ScrollView,
+  KeyboardAvoidingView,
+  Platform,
+  TextInput,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
@@ -18,6 +24,7 @@ import {
 
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
+  const passwordInputRef = useRef<TextInput>(null);
 
   const handleSignIn = useCallback((data: object) => {
     console.log(data);
@@ -52,8 +59,12 @@ const SignIn: React.FC = () => {
                 icon="mail"
                 placeholder="E-mail"
                 returnKeyType="next"
+                onSubmitEditing={() => {
+                  passwordInputRef.current?.focus();
+                }}
               />
               <Input
+                ref={passwordInputRef}
                 name="password"
                 icon="lock"
                 placeholder="Senha"
