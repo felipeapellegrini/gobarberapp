@@ -1,6 +1,5 @@
 {
   "env": {
-    "browser": true,
     "es6": true
   },
   "extends": [
@@ -25,14 +24,18 @@
   },
   "plugins": [
     "react",
-    "react-hooks",
     "@typescript-eslint",
+    "react-hooks",
     "prettier"
   ],
   "rules": {
-    "prettier/prettier": "error",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
+    "@typescript-eslint/ban-types": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/prop-types": "off",
+    "no-unused-expressions": "off",
+    "prettier/prettier": "error",
     "react/jsx-filename-extension": [
       1,
       {
@@ -49,11 +52,11 @@
         "ts": "never",
         "tsx": "never"
       }
-    ],
-    "settings": {
-      "import/resolver": {
-        "typescript": {}
-      }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
     }
   }
 }
