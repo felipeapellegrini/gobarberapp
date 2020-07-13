@@ -16,6 +16,7 @@ import Logo from '../../components/Logo';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import getValidationErrors from '../../utils/getValidationError';
+import api from '../../services/api';
 import { Container, Title, BackToLogin, BackToLoginText } from './styles';
 
 interface SignUpFormData {
@@ -45,16 +46,14 @@ const SignUp: React.FC = () => {
         abortEarly: false,
       });
 
-      // await api.post('/users', data);
+      await api.post('/users', data);
 
-      // history.push('/');
+      navigation.navigate('SignIn');
 
-      // addToast({
-      //   type: 'success',
-      //   title: 'Cadastro realizado!',
-      //   description:
-      //     'Parabéns, você se cadastrou no GoBarber. Já pode realizar seu logon',
-      // });
+      Alert.alert(
+        'Cadastro realizado!',
+        'Parabéns, você se cadastrou no GoBarber. Já pode realizar seu logon.'
+      );
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
         const errors = getValidationErrors(err);
